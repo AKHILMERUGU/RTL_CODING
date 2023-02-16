@@ -1,4 +1,4 @@
-
+```system verilog
 module a_simple_mux(
     input wire [7:0] a_i,
     input wire [7:0] b_i,
@@ -8,3 +8,4 @@ module a_simple_mux(
     
     assign y_o = sel_i ? a_i : b_i;
 endmodule
+```
