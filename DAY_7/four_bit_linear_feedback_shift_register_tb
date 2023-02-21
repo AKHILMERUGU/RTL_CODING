@@ -1,0 +1,31 @@
+module four_bit_linear_feedback_shift_register_tb();
+
+  logic clk;
+  logic reset;
+
+  logic [3:0] lfsr_o;
+
+ four_bit_linear_feedback_shift_register FOUR_BIT_LINEAR_FEEDBACK_SHIFT_REGISTER (.*);
+
+  always begin
+    clk = 1'b1;
+    #5;
+    clk = 1'b0;
+    #5;
+  end
+
+  initial begin
+    reset <= 1'b1;
+    @(posedge clk);
+    reset <= 1'b0;
+    for (int i=0; i<32; i=i+1)
+      @(posedge clk);
+    $finish();
+  end
+
+  initial begin
+    $dumpfile("four_bit_linear_feedback_shift_register.vcd");
+    $dumpvars(2, four_bit_linear_feedback_shift_register_tb);
+  end
+
+endmodule
