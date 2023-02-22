@@ -1,0 +1,24 @@
+module parameterized_binary_to_one_hot_converter_tb();
+
+  localparam BIN_W = 4;
+  localparam ONE_HOT_W = 16;
+
+  logic [BIN_W-1:0] bin_i;
+  logic [ONE_HOT_W-1:0] one_hot_o;
+
+  parameterized_binary_to_one_hot_converter #(BIN_W, ONE_HOT_W) PARAMETERIZED_BINARY_TO_ONE_HOT_CONVERTER (.*);
+
+  initial begin
+    for(int i=0; i<32; i=i+1) begin
+      bin_i = $urandom_range(0, 4'hF);
+      #5;
+    end
+    $finish();
+  end
+
+  initial begin
+    $dumpfile("parameterized_binary_to_one_hot_converter.vcd");
+    $dumpvars(2, parameterized_binary_to_one_hot_converter_tb);
+  end
+
+endmodule
