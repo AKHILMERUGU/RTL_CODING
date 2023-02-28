@@ -1,0 +1,23 @@
+module fixed_priority_arbiter_tb();
+
+    
+      localparam NUM_PORTS = 8;
+    
+      logic[NUM_PORTS-1:0] req_i;
+      logic[NUM_PORTS-1:0] gnt_o;
+    
+      fixed_priority_arbiter #(NUM_PORTS) FIXED_PRIORITY_ARBITER (.*);
+    
+      initial begin
+        for (int i=0; i<32; i=i+1) begin
+          req_i = $urandom_range(0, 2**NUM_PORTS-1);
+          #5;
+        end
+      end
+    
+      initial begin
+        $dumpfile("fixed_priority_arbiter.vcd");
+        $dumpvars(0, fixed_priority_arbiter_tb);
+      end
+      
+    endmodule
